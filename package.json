@@ -1,0 +1,19 @@
+{
+  "name": "hearline",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Hearline — listen to any webpage",
+  "scripts": {
+    "build": "node build.mjs",
+    "package": "node build.mjs --zip",
+    "test": "node --test test/*.test.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "kokoro-js": "^1.2.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.63.0"
+  }
+}

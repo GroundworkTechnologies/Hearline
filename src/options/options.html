@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hearline settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Hearline</h1>
+      <p>Any page, read aloud. Free, private, no account.</p>
+    </header>
+
+    <section id="welcome" class="card accent" hidden>
+      <h2>Welcome 👋</h2>
+      <p>Open any article and click the Hearline icon (or press <kbd>Alt</kbd>+<kbd>H</kbd>). Tip: the HQ voices below sound much more natural than your system voices.</p>
+    </section>
+
+    <section id="voices" class="card">
+      <h2>HQ voices (offline)</h2>
+      <p>Natural-sounding voices that run entirely on your device — nothing you read is ever sent anywhere. English only (US &amp; UK). One-time download of about 90&nbsp;MB, then it works offline.</p>
+      <p id="hq-status" class="status"></p>
+      <div class="progress" id="hq-progress" hidden><div class="bar"></div><span class="label"></span></div>
+      <div class="actions">
+        <button id="hq-install" class="btn primary">Install HQ voices</button>
+        <button id="hq-more" class="btn" hidden>Download all voices</button>
+        <button id="hq-remove" class="btn danger" hidden>Remove</button>
+      </div>
+      <div class="actions"><button id="hq-bench" class="btn" hidden>Run speed test</button></div>
+      <p id="hq-bench-out" class="hint" hidden></p>
+      <p class="hint">After installing, open the voice menu in the player to choose a voice. The first 6 voices are included; the others download (~0.5&nbsp;MB each) when you first pick them, or use “Download all voices”.</p>
+    </section>
+
+    <section class="card">
+      <h2>Reading</h2>
+      <label class="field"><span>Default speed</span><input id="rate" type="range" min="0.5" max="4" step="0.05"><output id="rate-out"></output></label>
+      <label class="field"><span>Speed-reading pace (words per minute)</span><input id="wpm" type="number" min="100" max="1000" step="25"></label>
+      <label class="field"><span>Follow the reading with scroll</span><input id="autoScroll" type="checkbox"></label>
+      <h3>Skip while reading</h3>
+      <label class="field"><span>Citations like [1]</span><input id="skip-citations" type="checkbox"></label>
+      <label class="field"><span>Code blocks</span><input id="skip-code" type="checkbox"></label>
+      <label class="field"><span>Web addresses (say “link”)</span><input id="skip-urls" type="checkbox"></label>
+      <label class="field"><span>Emoji</span><input id="skip-emoji" type="checkbox"></label>
+    </section>
+
+    <section class="card">
+      <h2>Appearance</h2>
+      <label class="field"><span>Highlight style</span>
+        <select id="highlight">
+          <option value="pill">Word pill</option>
+          <option value="underline">Word underline</option>
+          <option value="sentence">Sentence</option>
+          <option value="sentence-word">Sentence + word</option>
+        </select></label>
+      <label class="field"><span>Theme</span>
+        <select id="theme"><option value="auto">Match system</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label class="field"><span>Accent colour</span><input id="accent" type="color"></label>
+    </section>
+
+    <section class="card">
+      <h2>Pronunciation</h2>
+      <p>Fix words that are read wrong. Whole words only, not case-sensitive.</p>
+      <div id="pron-list"></div>
+      <form id="pron-form" class="inline">
+        <input id="pron-from" placeholder="Written as (e.g. GIF)" required>
+        <input id="pron-to" placeholder="Spoken as (e.g. jif)">
+        <button class="btn">Add</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Bookmarks</h2>
+      <div id="bookmarks"></div>
+    </section>
+
+    <section class="card">
+      <h2>Your listening</h2>
+      <p id="stats">—</p>
+      <p class="hint">Stored only on this device.</p>
+      <div class="actions">
+        <button id="clear-positions" class="btn">Forget reading positions</button>
+        <button id="clear-all" class="btn danger">Reset all Hearline data</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>No voices on Linux?</h2>
+      <p>Chrome uses the system speech service. On Ubuntu run <code>sudo apt install speech-dispatcher espeak-ng</code>, then restart Chrome. Or install the HQ voices above — they don’t need anything else.</p>
+    </section>
+
+    <section class="card">
+      <h2>Privacy</h2>
+      <p>Hearline has no account, no analytics, and no servers. Page text is only ever spoken by your browser or by the on-device HQ voices. The only network request is the optional one-time voice download from Hugging Face when you press “Install HQ voices”.</p>
+    </section>
+  </div>
+
+  <script src="../shared/settings.js"></script>
+  <script src="../shared/kokoro-voices.js"></script>
+  <script type="module" src="installer.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
